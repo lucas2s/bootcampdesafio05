@@ -16,6 +16,13 @@ const Container = styled.div`
       margin-right: 10px;
     }
   }
+
+  strong {
+    span {
+      font-size: 14px;
+      color: #666;
+    }
+  }
 `;
 
 export default Container;
