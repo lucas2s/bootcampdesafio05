@@ -40,8 +40,8 @@ export default class Main extends Component {
   handleSubmit = async e => {
     try {
       e.preventDefault();
-      
-      this.setState({ 
+
+      this.setState({
         loading: 1,
         error: 0,
       });
@@ -50,8 +50,8 @@ export default class Main extends Component {
 
       const exist = repositories.find(repo => repo.name === newRepo);
 
-      if(exist) {
-        throw new Error('Repositório duplicado');  
+      if (exist) {
+        throw new Error('Repositório duplicado');
       }
 
       const response = await api.get(`/repos/${newRepo}`);
@@ -65,13 +65,12 @@ export default class Main extends Component {
         newRepo: '',
         loading: 0,
       });
-
     } catch {
       const { newRepo } = this.state;
-      this.setState({ 
+      this.setState({
         loading: 0,
         error: 1,
-        newRepo: newRepo,
+        newRepo,
       });
     }
   };
@@ -82,7 +81,9 @@ export default class Main extends Component {
       <Container>
         <h1>
           <FaGithubAlt />
-          <strong>Repositórios<span> - Insira um repositorio do GitHub.</span></strong>
+          <strong>
+            Repositórios<span> - Insira um repositorio do GitHub.</span>
+          </strong>
         </h1>
 
         <Form onSubmit={this.handleSubmit}>
@@ -102,7 +103,7 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-        
+
         <List>
           {repositories.map(repository => (
             <li key={repository.name}>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Loading = styled.div `
+export const Loading = styled.div`
   color: #fff;
   font-size: 30px;
   font-weight: bold;
@@ -10,7 +10,16 @@ export const Loading = styled.div `
   height: 100vh;
 `;
 
-export const Owner = styled.header `
+export const Error = styled.div`
+  color: #ff0000;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+`;
+
+export const Owner = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +29,6 @@ export const Owner = styled.header `
     font-size: 16px;
     text-decoration: none;
   }
-
 
   img {
     width: 120px;
@@ -42,7 +50,7 @@ export const Owner = styled.header `
   }
 `;
 
-export const IssueList = styled.ul `
+export const IssueList = styled.ul`
   padding-top: 10px;
   margin-top: 10px;
   border-top: 1px solid #eee;
@@ -101,7 +109,7 @@ export const IssueList = styled.ul `
   }
 `;
 
-export const StateIssues = styled.div `
+export const StateIssues = styled.div`
   padding-top: 10px;
   margin-top: 30px;
   border-top: 1px solid #eee;
@@ -109,7 +117,7 @@ export const StateIssues = styled.div `
   align-items: center;
   justify-content: center;
 
-  P{
+  p {
     font-size: 14px;
     font-weight: bold;
     margin-right: 10px;
@@ -120,4 +128,4 @@ export const StateIssues = styled.div `
     border: 2px solid #7159c1;
     border-radius: 5px;
   }
-`
+`;
