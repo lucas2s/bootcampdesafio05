@@ -19,7 +19,7 @@ export default class Repository extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
-        repository: PropTypes.shape(),
+        repository: PropTypes.string,
       }),
     }).isRequired,
   };
@@ -34,27 +34,35 @@ export default class Repository extends Component {
   };
 
   async componentDidMount() {
-    const { match } = this.props;
-    const { state, page } = this.state;
+    try {
+      const { match } = this.props;
+      const { state, page } = this.state;
 
-    const repoName = decodeURIComponent(match.params.repository);
+      const repoName = decodeURIComponent(match.params.repository);
 
-    const [repository, issues] = await Promise.all([
-      api.get(`/repos/${repoName}`),
-      api.get(`/repos/${repoName}/issues`, {
-        params: {
-          state,
-          per_page: 5,
-          page,
-        },
-      }),
-    ]);
+      const [repository, issues] = await Promise.all([
+        api.get(`/repos/${repoName}`),
+        api.get(`/repos/${repoName}/issues`, {
+          params: {
+            state,
+            per_page: 5,
+            page,
+          },
+        }),
+      ]);
 
-    this.setState({
-      repository: repository.data,
-      issues: issues.data,
-      loading: 0,
-    });
+      this.setState({
+        repository: repository.data,
+        issues: issues.data,
+        loading: 0,
+      });
+    } catch {
+      this.setState({
+        loading: 0,
+        issues: [],
+        error: 1,
+      });
+    }
   }
 
   handleInputChange = async e => {
@@ -128,6 +136,15 @@ export default class Repository extends Component {
 
     if (loading) {
       return <Loading>Carregando</Loading>;
+    }
+
+    if (error) {
+      return (
+        <Loading>
+          Erro ao consultar repositório no GitHub
+          <Link to="/">Voltar aos repositórios</Link>
+        </Loading>
+      );
     }
 
     return (
