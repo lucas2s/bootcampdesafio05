@@ -129,3 +129,41 @@ export const StateIssues = styled.div`
     border-radius: 5px;
   }
 `;
+
+export const Page = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-top: 15px;
+
+  span {
+    font-size: 10px;
+    margin: 5px 5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: #7159c1;
+    border-radius: 50px;
+    color: #fff;
+  }
+`;
+
+export const ButtonPage = styled.button`
+  border: none;
+  background: #7159c1;
+  border-radius: 10px;
+  font-size: 10px;
+  padding: 5px 10px;
+  color: #fff;
+  box-shadow: 4px 4px 4px #888;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+`;

@@ -5,14 +5,20 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import Container from '../../components/Container';
 
-import { Loading, Owner, IssueList, StateIssues, Error } from './styles';
+import {
+  Loading,
+  Owner,
+  IssueList,
+  StateIssues,
+  Error,
+  Page,
+  ButtonPage,
+} from './styles';
 
 export default class Repository extends Component {
   static propTypes = {
     match: PropTypes.shape({
-      params: PropTypes.shape({
-        repository: PropTypes.shape({}),
-      }),
+      params: PropTypes.shape({}),
     }).isRequired,
   };
 
@@ -20,13 +26,14 @@ export default class Repository extends Component {
     repository: {},
     issues: [],
     loading: 1,
-    stateIssues: 'open',
+    state: 'open',
     error: 0,
+    page: 1,
   };
 
   async componentDidMount() {
     const { match } = this.props;
-    const { stateIssues } = this.state;
+    const { state, page } = this.state;
 
     const repoName = decodeURIComponent(match.params.repository);
 
@@ -34,8 +41,9 @@ export default class Repository extends Component {
       api.get(`/repos/${repoName}`),
       api.get(`/repos/${repoName}/issues`, {
         params: {
-          state: stateIssues,
+          state,
           per_page: 5,
+          page,
         },
       }),
     ]);
@@ -49,25 +57,23 @@ export default class Repository extends Component {
 
   handleInputChange = async e => {
     try {
-      this.setState({
-        loading: 1,
-      });
+      const state = e.target.value;
 
-      const stateIssues = e.target.value;
-      this.setState({ stateIssues });
-
+      const page = 1;
       const { repository } = this.state;
 
       const issues = await api.get(`/repos/${repository.full_name}/issues`, {
         params: {
-          state: stateIssues,
+          state,
           per_page: 5,
+          page,
         },
       });
 
       this.setState({
         issues: issues.data,
-        loading: 0,
+        state,
+        page,
       });
     } catch {
       this.setState({
@@ -78,8 +84,45 @@ export default class Repository extends Component {
     }
   };
 
+  handlePage = async e => {
+    try {
+      const rel = e.target.value;
+      let { page } = this.state;
+      const { state, repository } = this.state;
+
+      if (rel === 'next') page += 1;
+      else page -= 1;
+
+      const issues = await api.get(`/repos/${repository.full_name}/issues`, {
+        params: {
+          state,
+          per_page: 5,
+          page,
+        },
+      });
+
+      this.setState({
+        issues: issues.data,
+        state,
+        page,
+      });
+    } catch {
+      this.setState({
+        issues: [],
+        error: 1,
+      });
+    }
+  };
+
   render() {
-    const { repository, issues, loading, stateIssues, error } = this.state;
+    const {
+      repository,
+      issues,
+      loading,
+      stateIssues,
+      error,
+      page,
+    } = this.state;
 
     if (loading) {
       return <Loading>Carregando</Loading>;
@@ -123,6 +166,19 @@ export default class Repository extends Component {
             ))
           )}
         </IssueList>
+        <Page>
+          <ButtonPage
+            onClick={this.handlePage}
+            value="last"
+            disabled={page < 2 || error}
+          >
+            Página Anterior
+          </ButtonPage>
+          <span>{page}</span>
+          <ButtonPage onClick={this.handlePage} value="next" disabled={error}>
+            Próxima Página
+          </ButtonPage>
+        </Page>
       </Container>
     );
   }
