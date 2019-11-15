@@ -22,14 +22,21 @@ export const Form = styled.form`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  input {
-    flex: 1;
-    border: 1px solid #eee;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 16px;
-  }
 `;
+
+export const Input = styled.input`
+  flex: 1;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+
+  ${props => props.error && css`
+    &{
+      border: 4px solid #ff0000;
+    }
+  `}
+`
 
 const rotate = keyframes`
   from {
@@ -58,13 +65,11 @@ export const SubmitButton = styled.button.attrs(props => ({
     opacity: 0.6;
   }
 
-  ${props =>
-    props.loading &&
-    css`
-      svg {
-        animation: ${rotate} 2s linear infinite;
-      }
-    `}
+  ${props => props.loading && css`
+    svg {
+      animation: ${rotate} 2s linear infinite;
+    }
+  `}
 `;
 
 export const List = styled.ul`

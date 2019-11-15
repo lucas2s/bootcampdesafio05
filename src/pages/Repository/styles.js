@@ -43,8 +43,8 @@ export const Owner = styled.header `
 `;
 
 export const IssueList = styled.ul `
-  padding-top: 30px;
-  margin-top: 30px;
+  padding-top: 10px;
+  margin-top: 10px;
   border-top: 1px solid #eee;
   list-style: none;
 
@@ -100,3 +100,24 @@ export const IssueList = styled.ul `
     }
   }
 `;
+
+export const StateIssues = styled.div `
+  padding-top: 10px;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  P{
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  select {
+    font-size: 13px;
+    border: 2px solid #7159c1;
+    border-radius: 5px;
+  }
+`

@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Form, SubmitButton, List } from './styles';
+import { Form, SubmitButton, List, Input } from './styles';
 
 export default class Main extends Component {
   state = {
     newRepo: '',
     repositories: [],
     loading: 0,
+    error: 0,
   };
 
   // Carregar os dados do localStorage
@@ -37,39 +38,60 @@ export default class Main extends Component {
   };
 
   handleSubmit = async e => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
+      
+      this.setState({ 
+        loading: 1,
+        error: 0,
+      });
 
-    this.setState({ loading: 1 });
+      const { newRepo, repositories } = this.state;
 
-    const { newRepo, repositories } = this.state;
+      const exist = repositories.find(repo => repo.name === newRepo);
 
-    const response = await api.get(`/repos/${newRepo}`);
+      if(exist) {
+        throw new Error('Repositório duplicado');  
+      }
 
-    const data = {
-      name: response.data.full_name,
-    };
+      const response = await api.get(`/repos/${newRepo}`);
 
-    this.setState({
-      repositories: [...repositories, data],
-      newRepo: '',
-      loading: 0,
-    });
+      const data = {
+        name: response.data.full_name,
+      };
+
+      this.setState({
+        repositories: [...repositories, data],
+        newRepo: '',
+        loading: 0,
+      });
+
+    } catch {
+      const { newRepo } = this.state;
+      this.setState({ 
+        loading: 0,
+        error: 1,
+        newRepo: newRepo,
+      });
+    }
   };
 
   render() {
-    const { newRepo, repositories, loading } = this.state;
+    const { newRepo, repositories, loading, error } = this.state;
     return (
       <Container>
         <h1>
           <FaGithubAlt />
           <strong>Repositórios<span> - Insira um repositorio do GitHub.</span></strong>
         </h1>
+
         <Form onSubmit={this.handleSubmit}>
-          <input
+          <Input
             type="text"
             placeholder="Adicionar repositório"
             value={newRepo}
             onChange={this.handleInputChange}
+            error={error}
           />
 
           <SubmitButton loading={loading}>
@@ -80,7 +102,7 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-
+        
         <List>
           {repositories.map(repository => (
             <li key={repository.name}>

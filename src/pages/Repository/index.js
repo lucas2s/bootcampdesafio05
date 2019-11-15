@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import Container from '../../components/Container';
 
-import {Loading, Owner, IssueList} from './styles';
+import {Loading, Owner, IssueList, StateIssues} from './styles';
 
 export default class Repository extends Component {
 
@@ -20,10 +20,12 @@ export default class Repository extends Component {
     repository: {},
     issues: [],
     loading: 1,
+    stateIssues: 'open',
   }
 
   async componentDidMount() {
     const { match } = this.props;
+    const { stateIssues } = this.state;
 
     const repoName = decodeURIComponent( match.params.repository);
 
@@ -31,7 +33,7 @@ export default class Repository extends Component {
       api.get(`/repos/${repoName}`),
       api.get(`/repos/${repoName}/issues`, {
         params: {
-          state: 'open',
+          state: stateIssues,
           per_page: 5,
         }
       }),
@@ -44,9 +46,32 @@ export default class Repository extends Component {
     })
   }
 
+  handleInputChange = async e => {
+    this.setState({
+      loading: 1,
+    })
+
+    const stateIssues = e.target.value;
+    this.setState({ stateIssues: stateIssues });
+
+    const issues = api.get(`/repos/${this.state.repository.name}/issues`, {
+      params: {
+        state: stateIssues,
+        per_page: 5,
+      }
+    })
+
+    this.setState({
+      issues: issues.data,
+      loading: 0,
+    })
+
+    console.log(stateIssues);
+  };
+
   render () {
 
-    const { repository, issues, loading } = this.state;
+    const { repository, issues, loading, stateIssues } = this.state;
 
     if(loading) {
       return <Loading>Carregando</Loading>
@@ -60,6 +85,16 @@ export default class Repository extends Component {
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
         </Owner>
+
+
+        <StateIssues>
+          <p>Issues State: </p>
+          <select onChange={this.handleInputChange} value={stateIssues}>
+            <option value="open">Abertas</option>
+            <option value="closed">Fechadas</option>
+            <option value="all">Todas</option>
+          </select>
+        </StateIssues>
 
         <IssueList>
           {
