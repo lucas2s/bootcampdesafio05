@@ -18,7 +18,9 @@ import {
 export default class Repository extends Component {
   static propTypes = {
     match: PropTypes.shape({
-      params: PropTypes.shape({}),
+      params: PropTypes.shape({
+        repository: PropTypes.shape(),
+      }),
     }).isRequired,
   };
 
