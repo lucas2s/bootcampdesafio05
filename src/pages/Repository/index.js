@@ -66,43 +66,31 @@ export default class Repository extends Component {
   }
 
   handleInputChange = async e => {
-    try {
-      const state = e.target.value;
+    const state = e.target.value;
+    const page = 1;
+    
+    await this.setState({
+      state,
+      page,
+    });
 
-      const page = 1;
-      const { repository } = this.state;
-
-      const issues = await api.get(`/repos/${repository.full_name}/issues`, {
-        params: {
-          state,
-          per_page: 5,
-          page,
-        },
-      });
-
-      this.setState({
-        issues: issues.data,
-        state,
-        page,
-      });
-    } catch {
-      this.setState({
-        loading: 0,
-        issues: [],
-        error: 1,
-      });
-    }
+    this.loadingIssues();
   };
 
   handlePage = async e => {
+    const rel = e.target.value;
+    let { page } = this.state;
+
+    await (rel === 'next' ? 
+      this.setState({page: page + 1}) : 
+      this.setState({page: page - 1}));
+    
+    this.loadingIssues();
+  };
+
+  async loadingIssues() {
     try {
-      const rel = e.target.value;
-      let { page } = this.state;
-      const { state, repository } = this.state;
-
-      if (rel === 'next') page += 1;
-      else page -= 1;
-
+      const { state, page, repository } = this.state;
       const issues = await api.get(`/repos/${repository.full_name}/issues`, {
         params: {
           state,
@@ -116,13 +104,14 @@ export default class Repository extends Component {
         state,
         page,
       });
+
     } catch {
       this.setState({
         issues: [],
         error: 1,
       });
     }
-  };
+  }
 
   render() {
     const {
