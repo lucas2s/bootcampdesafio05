@@ -37,7 +37,7 @@
 
 Nesse desafio foi incluida novas funcionalidades na aplicação que desenvolvemos ao longo do módulo 5 do Bootcamp :rocket: Rockeseat.
 
-O projeto consiste consultar e incluir repositórios do GitHub na aplicação e detalhar os issues do repositório. Todas as consultas do repositórios e issues são realizadas através das APIs do GitHub.
+O projeto consiste em consultar e incluir repositórios do GitHub e detalhar os issues do repositório. Todas as consultas do repositórios e issues são realizadas através das APIs do GitHub.
 
 ## 2 - Tecnologias
 
@@ -70,9 +70,11 @@ O Projeto desenvolvido em ReactJS com aplicação de diversas tecnologias e bibl
 
 ## 5 - Executar aplicação
 
-:heavy_check_mark: Fazer download do Projeto <br />
-:heavy_check_mark: Abrir a pasta do projeto via linha de comando e executar o comando "yarn" para carregar as dependências do projeto. <br />
+:heavy_check_mark: Faça um clone desse repositório <br />
+:heavy_check_mark: Entre na pasta do projeto via linha de comando. <br />
+:heavy_check_mark: Executar o comando yarn para instalar as dependências. <br />
 :heavy_check_mark: Executar o comando "yarn start" para inciar a aplicação. <br />
+:heavy_check_mark: Abra http://localhost:3000 para ver o projeto no navegador. <br />
 
 :heavy_exclamation_mark: Obs: A aplicação yarn deve estar instalada no computador.
 
