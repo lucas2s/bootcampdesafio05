@@ -37,7 +37,7 @@
 
 Nesse desafio foi incluida novas funcionalidades na aplicação que desenvolvemos ao longo do módulo 5 do Bootcamp :rocket: Rockeseat.
 
-O projeto consiste em incluir na aplicação um repositório do GitHub e detalhar os issues do repositório. Todas as consultas do repositórios e issues são realizadas através das APIs do GitHub.
+O projeto consiste consultar e incluir repositórios do GitHub na aplicação e detalhar os issues do repositório. Todas as consultas do repositórios e issues são realizadas através das APIs do GitHub.
 
 ## 2 - Tecnologias
 
