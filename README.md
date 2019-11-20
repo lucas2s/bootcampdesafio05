@@ -1,68 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center" >
+  <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="100px" /> <br />
+  Bootcamp 9.0 da <a text-decoration="none" href="https://rocketseat.com.br">:rocket: Rockeseat</a> - Desafio 5: Primeiro projeto com ReactJS
+</h1>
+<h2 align="center">
+    <img alt="GoStack" src="./public/react-logo.png" width="120px" />
+</h2>
 
-## Available Scripts
+<blockquote align="center">“Feito é melhor doque perfeito!"</blockquote>
 
-In the project directory, you can run:
+<p align="center">
+  <a href="https://github.com/lucasssartori?tab=followers">
+    <img alt="GitHub Lucas Sartori" src="https://img.shields.io/github/followers/lucasssartori?style=social">
+  </a>
 
-### `yarn start`
+  <a href="https://github.com/lucasssartori/bootcampdesafio05/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/lucasssartori/bootcampdesafio05?style=social">
+  </a>
+  <a href="https://github.com/lucasssartori/bootcampdesafio05/forks/">
+    <img alt="Stargazers" src="https://img.shields.io/github/forks/lucasssartori/bootcampdesafio05?style=social">
+  </a>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  <a href="https://github.com/lucasssartori/bootcampdesafio05/watchers">
+    <img alt="watchers" src="https://img.shields.io/github/watchers/lucasssartori/bootcampdesafio05?style=social">
+  </a>
+</p>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<p align="center">
+  <a href="#1---sobre-o-desafio">Sobre o desafio</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#2---tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#3---funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#4---apresentação">Apresentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#5---executar-aplicação">Executar aplicação</a>
+</p>
 
-### `yarn test`
+## 1 - Sobre o desafio
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Nesse desafio foi incluida novas funcionalidades na aplicação que desenvolvemos ao longo do módulo 5 do Bootcamp :rocket: Rockeseat.
 
-### `yarn build`
+O projeto consiste em incluir na aplicação um repositório do GitHub e detalhar os issues do repositório. Todas as consultas do repositórios e issues são realizadas através das APIs do GitHub.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 2 - Tecnologias
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+O Projeto desenvolvido em ReactJS com aplicação de diversas tecnologias e bibliotecas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - axios
+  - prop-types
+  - react-icons
+  - styled-components
+  - eslint
+  - prettier
+  - editorconfig
 
-### `yarn eject`
+## 3 - Funcionalidades
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - Inclusão de repositórios do GitHub através da consulta da API re repositório.
+  - Gravação dos repositórios no Local Storage.
+  - Listagem dos repositórios incluidos.
+  - Tratamento de exceção.
+  - Detalhamento das issues dos repositórios.
+  - Paginação dos issues.
+  - Filtro de issues.
+  - Navegação entre as rotas da aplicação.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 4 - Apresentação
+<p> Tela principal para inclusão e listagem dos repositórios. </p>
+<img alt="Tela Main" src="./public/app1.png" />
+<p> Tela de detalhes para aprensentação e listagem das issues. </p>
+<img alt="Tela Main" src="./public/app2.png" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 5 - Executar aplicação
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+:heavy_check_mark: Fazer download do Projeto <br />
+:heavy_check_mark: Abrir a pasta do projeto via linha de comando e executar o comando "yarn" para carregar as dependências do projeto. <br />
+:heavy_check_mark: Executar o comando "yarn start" para inciar a aplicação. <br />
 
-## Learn More
+:heavy_exclamation_mark: Obs: A aplicação yarn deve estar instalada no computador.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
